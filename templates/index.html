@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Bridges Template</title>
-
+<title>Mieszkanie</title>
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
  
 </head>
@@ -14,7 +13,7 @@
 	<div id="container">
 
         <div id="header_logo">
-        	<a href="#"><img src="{% static 'images/logo.png' %}" alt="Logo" /></a>
+        	<a href="#"><h1 style="color: #eeeeee">Twoje mieszkanie</h1></a>
         </div>
         <div id="header_menu">
         	<ul>
@@ -24,49 +23,17 @@
                 <li><a href="#">Kontakt</a></li>
             </ul>
         </div>
-	<div id="header_main">
-    <div id="header_main_image">
-    	<div id="header_main_text">
-            <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation 
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
+        <div id="header_main">
+            <ul>
+            {% for a, b, c  in content %}
+                <li>
+                    <a href="{{ a }}">{{ c }}</a></li>
+                <img src="https://www.budimex-nieruchomosci.pl{{ b }}" style="width: 200px; height: 150px">
+            {% endfor %}
+            </ul>
         </div>
-        </div>
-	</div>
-    <div id="boxy">
-    <div id="boxy_box_1">
-    		<h2>Lorem ipsum</h2>
-            <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation 
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
-            <a href="#">Lorem ipsum</a>
+
     </div>
-    <div id="boxy_box_2">
-    		<h2>Lorem ipsum</h2>
-            <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation 
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
-            <a href="#">Lorem ipsum</a>
-    </div>
-    <div id="boxy_box_3">
-    		<h2>Lorem ipsum</h2>
-            <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation 
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
-            <a href="#">Lorem ipsum</a>
-    </div>
-    </div>
-    <div id="footer">
-    © Wszelkie prawa zastrzeżone. <br> Projekt: <a href="http://www.templatki.net">Darmowe Szablony Stron</a>
-    </div>
-    </div>
+
 </body>
 </html>

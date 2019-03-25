@@ -1,10 +1,13 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.views import View
+from scraper_bs4.scrape_functions import scrape
 
 
 class MainPage(View):
 
     def get(self, request):
-        return render(request, 'index.html')
+        scrape()
+        ctx = {
+            "content": scrape()
+        }
+        return render(request, 'index.html', ctx)
