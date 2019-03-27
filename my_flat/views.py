@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from scraper_bs4.scrape_functions import scrape_budim, scrape_dd
+from scraper_bs4.scrape_functions import scrape_budim, scrape_dd, scrape_victoria
 
 
 class MainPage(View):
@@ -9,6 +9,7 @@ class MainPage(View):
         return render(request, 'main_page.html')
 
 
+# Think about how to split this three functions into one.
 class DevInvestmentBud(View):
 
     def get(self, request):
@@ -27,3 +28,13 @@ class DevInvestmentDD(View):
             "ctx": scrape_dd()
         }
         return render(request, 'dd_invest.html', ctx)
+
+
+class DevInvestmentVictoria(View):
+
+    def get(self, request):
+        scrape_victoria()
+        ctx = {
+            "ctx": scrape_victoria()
+        }
+        return render(request, 'victoria_invest.html', ctx)

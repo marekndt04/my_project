@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+    {% for url, img_source, title  in ctx %}
+        <div class="div_image1">
+            <a href="{{ url }}">{{ title }}<img class="img_review" src="{{ img_source }}"></a>
+
+        </div>
+    {% endfor %}
+
+{% endblock %}
