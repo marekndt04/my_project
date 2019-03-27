@@ -1,39 +1,26 @@
 {% load static %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Mieszkanie</title>
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
- 
+    <meta charset="UTF-8">
+    <title>Twoje mieszkanie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
 </head>
-
 <body>
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
+      <a href="/" class="navbar-brand">STRONA GŁÓWNA</a>
+      <a href="#" class="navbar-brand">FORUM</a>
+      <a href="#" class="navbar-brand">KOSZTORYSUJ REMONT</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
 
-	<div id="container">
 
-        <div id="header_logo">
-        	<a href="#"><h1 style="color: #eeeeee">Twoje mieszkanie</h1></a>
-        </div>
-        <div id="header_menu">
-        	<ul>
-            	<li><a href="#">Strona główna</a></li>
-                <li><a href="#">O nas</a></li>
-                <li><a href="#">Oferta</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
-        </div>
-        <div id="header_main">
-            <ul>
-            {% for a, b, c  in content %}
-                <li>
-                    <a href="{{ a }}">{{ c }}</a></li>
-                <img src="https://www.budimex-nieruchomosci.pl{{ b }}" style="width: 200px; height: 150px">
-            {% endfor %}
-            </ul>
-        </div>
 
-    </div>
-
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

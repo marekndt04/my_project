@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from my_flat.views import MainPage
+from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', MainPage.as_view())
+    path('', MainPage.as_view()),
+    path('bud_investment', DevInvestmentBud.as_view()),
+    path('dd_investment', DevInvestmentDD.as_view()),
 ]
