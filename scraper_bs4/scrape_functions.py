@@ -26,7 +26,7 @@ def scrape_budim():
 
     return zip(urls, image_srcs, titles)
 
-x = {"class": "c-offertiles__item js-invest to-show", }
+
 def scrape_dd():
     session = requests.Session()
     session.headers = {
@@ -35,8 +35,8 @@ def scrape_dd():
     content = session.get(url, verify=False).content
 
     soup = BeautifulSoup(content, "lxml")
-    posts = soup.find_all("div", {"data-id"})  # returns a list
-    print(posts)
+    posts = soup.find_all("div", {"class": "c-offertiles__item js-invest"})  # returns a list
+    # print(posts)
     urls = []
     image_srcs = []
     titles = []
@@ -50,4 +50,3 @@ def scrape_dd():
         image_srcs.append(i_img)
 
     return zip(urls, image_srcs, titles)
-

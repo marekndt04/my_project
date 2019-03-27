@@ -14,7 +14,7 @@ class DevInvestmentBud(View):
     def get(self, request):
         scrape_budim()
         ctx = {
-            "content": scrape_budim()
+            "ctx": scrape_budim()
         }
         return render(request, 'dev_investment.html', ctx)
 
@@ -24,6 +24,6 @@ class DevInvestmentDD(View):
     def get(self, request):
         scrape_dd()
         ctx = {
-            "content": scrape_dd()
+            "ctx": scrape_dd()
         }
-        return render(request, 'dev_investment.html', ctx)
+        return render(request, 'dd_invest.html', ctx)
