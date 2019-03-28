@@ -1,0 +1,18 @@
+{% extends "my_flat/index.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="post">{% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Dołącz dziś</legend>
+                {{ form }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Dołącz</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Masz już konto?</small> <a class="ml-2" href="#">Dołącz</a>
+        </div>
+    </div>
+{% endblock %}

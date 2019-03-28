@@ -6,7 +6,7 @@ from scraper_bs4.scrape_functions import scrape_budim, scrape_dd, scrape_victori
 class MainPage(View):
 
     def get(self, request):
-        return render(request, 'main_page.html')
+        return render(request, 'my_flat/main_page.html')
 
 
 # Think about how to split this three functions into one.
@@ -17,7 +17,7 @@ class DevInvestmentBud(View):
         ctx = {
             "ctx": scrape_budim()
         }
-        return render(request, 'dev_investment.html', ctx)
+        return render(request, 'my_flat/dev_investment.html', ctx)
 
 
 class DevInvestmentDD(View):
@@ -27,7 +27,7 @@ class DevInvestmentDD(View):
         ctx = {
             "ctx": scrape_dd()
         }
-        return render(request, 'dd_invest.html', ctx)
+        return render(request, 'my_flat/dd_invest.html', ctx)
 
 
 class DevInvestmentVictoria(View):
@@ -37,4 +37,4 @@ class DevInvestmentVictoria(View):
         ctx = {
             "ctx": scrape_victoria()
         }
-        return render(request, 'victoria_invest.html', ctx)
+        return render(request, 'my_flat/victoria_invest.html', ctx)

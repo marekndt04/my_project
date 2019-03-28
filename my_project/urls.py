@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 
 from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD, DevInvestmentVictoria
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', user_views.register, name='register'),
     path('', MainPage.as_view()),
     path('bud_investment', DevInvestmentBud.as_view()),
     path('dd_investment', DevInvestmentDD.as_view()),
