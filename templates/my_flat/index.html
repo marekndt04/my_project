@@ -15,12 +15,19 @@
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <a href="/register/" class="btn btn-outline-success my-2 my-sm-0">Zarejestruj</a>
+          <a href="/login/" class="btn btn-outline-success my-2 my-sm-0">Zaloguj</a>
+          <a href="/register/" class="btn btn-outline-success my-2 my-sm-0">Zarejestruj</a>
       </form>
     </nav>
 
 
-
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock %}
 </body>

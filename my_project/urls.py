@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
 from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD, DevInvestmentVictoria
 from users import views as user_views
@@ -22,6 +23,8 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login_page.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout_page.html'), name='logout'),
     path('', MainPage.as_view()),
     path('bud_investment', DevInvestmentBud.as_view()),
     path('dd_investment', DevInvestmentDD.as_view()),

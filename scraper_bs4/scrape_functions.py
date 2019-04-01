@@ -1,6 +1,6 @@
-from bs4 import BeautifulSoup
 import requests
 import re
+from bs4 import BeautifulSoup
 
 
 def scrape_budim():
@@ -10,12 +10,14 @@ def scrape_budim():
     url = 'https://www.budimex-nieruchomosci.pl/'
     content = session.get(url, verify=False).content
 
-    soup = BeautifulSoup(content, "lxml")
+    soup = BeautifulSoup(content, "html.parser")
     posts = soup.find_all("div", {"class": "inwestycja miasta jeden", })  # returns a list
 
     urls = []
     image_srcs = []
     titles = []
+
+    print(urls)
 
     for element in posts:
         investment_title = element.find("div", {"class": "metka-tytul"}).text
@@ -35,7 +37,7 @@ def scrape_dd():
     url = 'https://www.domd.pl/inwestycje/'
     content = session.get(url, verify=False).content
 
-    soup = BeautifulSoup(content, "lxml")
+    soup = BeautifulSoup(content, "html.parser")
     posts = soup.find_all("div", {"class": "c-offertiles__item js-invest"})  # returns a list
     # print(posts)
     urls = []
@@ -60,7 +62,7 @@ def scrape_victoria():
     url = 'http://www.victoriadom.pl/'
     content = session.get(url, verify=False).content
 
-    soup = BeautifulSoup(content, "lxml")
+    soup = BeautifulSoup(content, "html.parser")
     posts = soup.find_all("a", {"class": "banner--header js-animate col-lg-4 col-xl-3 col-md-6 new"})  # returns a list
     # print(posts)
     urls = []

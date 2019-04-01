@@ -4,6 +4,14 @@
 	padding: 10px;
 }
 
+.div_form {
+	width: 33%;
+	height: 50%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .div_image1 {
 	float: left;
 	width: 33%;
@@ -23,6 +31,17 @@
 	display: inline-block;
 	box-sizing: border-box;
 }
+
+.div_img_review {
+	float: left;
+	width: 20%;
+	/*height: 50%;*/
+	display: inline-block;
+	/*box-sizing: border-box;*/
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .red_color{
 	background-color: chartreuse;
 }
