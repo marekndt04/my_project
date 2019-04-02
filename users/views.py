@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views import View
 from .forms import UserRegisterForm
 
@@ -20,3 +22,17 @@ class Register(View):
         else:
             form = UserRegisterForm()
         return render(request, 'users/registration_page.html', {'form': form})
+
+@login_required()
+def profile(request):
+    if request.method == "GET":
+                return render(request, 'users/profile.html')
+
+#
+# class Profile(View):
+#
+#     @login_required()
+#     def get(self, request):
+#
+#         return render(request, 'users/profile.html')
+#         pass
