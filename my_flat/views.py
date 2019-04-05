@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from scraper_bs4.scrape_functions import scrape_budim, scrape_dd, scrape_victoria
+from my_flat.models import Post
 
 
 class MainPage(View):
@@ -43,4 +44,7 @@ class DevInvestmentVictoria(View):
 class ForumView(View):
 
     def get(self, request):
-        return render(request, 'my_flat/forum_view.html')
+        posts = {
+            'posts': Post.objects.all()
+        }
+        return render(request, 'my_flat/forum_view.html', posts)
