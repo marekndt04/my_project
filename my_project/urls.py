@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
-from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD, DevInvestmentVictoria
+from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD, DevInvestmentVictoria, ForumView
 from users import views as user_views
 
 urlpatterns = [
@@ -30,5 +30,6 @@ urlpatterns = [
     path('bud_investment', DevInvestmentBud.as_view()),
     path('dd_investment', DevInvestmentDD.as_view()),
     path('victoria_investment', DevInvestmentVictoria.as_view()),
+    path('forum', ForumView.as_view(), name='forum'),
 
 ]

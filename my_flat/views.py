@@ -38,3 +38,9 @@ class DevInvestmentVictoria(View):
             "ctx": scrape_victoria()
         }
         return render(request, 'my_flat/victoria_invest.html', ctx)
+
+
+class ForumView(View):
+
+    def get(self, request):
+        return render(request, 'my_flat/forum_view.html')
