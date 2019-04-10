@@ -39,7 +39,6 @@ def scrape_dd():
 
     soup = BeautifulSoup(content, "html.parser")
     posts = soup.find_all("div", {"class": "c-offertiles__item js-invest"})  # returns a list
-    # print(posts)
     urls = []
     image_srcs = []
     titles = []
@@ -64,7 +63,6 @@ def scrape_victoria():
 
     soup = BeautifulSoup(content, "html.parser")
     posts = soup.find_all("a", {"class": "banner--header js-animate col-lg-4 col-xl-3 col-md-6 new"})  # returns a list
-    # print(posts)
     urls = []
     image_srcs = []
     titles = []
@@ -75,11 +73,8 @@ def scrape_victoria():
         i_url = posts[i]["href"]
         urls.append(i_url)
         i_img = posts[i].find("div")["style"]
-        print(i_img)
-        img_url_extracted = re.search(r'\{(.*?)\}', i_img)
-        # print(img_url_extracted[-1])
+        img_url_extracted = re.search(r"\(.*?\)", i_img).group()[1:-1]
+        print(img_url_extracted)
         image_srcs.append(img_url_extracted)
-    # print(image_srcs)
-    # print(titles)
-    # print(urls)
+
     return zip(urls, image_srcs, titles)
