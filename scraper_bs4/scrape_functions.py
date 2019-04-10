@@ -69,15 +69,17 @@ def scrape_victoria():
     image_srcs = []
     titles = []
 
-    for element in posts:
-        investment_title = element.find("h2", {"class": "banner__heading playfair"}).text
+    for i in range(0, len(posts)):
+        investment_title = posts[i].find("h2", {"class": "banner__heading playfair"}).text
         titles.append(investment_title)
-        i_url = element["href"]
+        i_url = posts[i]["href"]
         urls.append(i_url)
-        i_img = element.find("div")["style"]
-        img_url_extracted = re.findall("http.*[)]", i_img)
+        i_img = posts[i].find("div")["style"]
+        print(i_img)
+        img_url_extracted = re.search(r'\{(.*?)\}', i_img)
+        # print(img_url_extracted[-1])
         image_srcs.append(img_url_extracted)
-    print(image_srcs)
-    print(titles)
-    print(urls)
+    # print(image_srcs)
+    # print(titles)
+    # print(urls)
     return zip(urls, image_srcs, titles)
