@@ -51,6 +51,7 @@ def scrape_dd():
         i_img = element.find("img")["src"]
         image_srcs.append(i_img)
 
+
     return zip(urls, image_srcs, titles)
 
 
