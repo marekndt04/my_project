@@ -133,10 +133,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-
-# try:
-#     from my_project.local_settings import DATABASES
-# except ModuleNotFoundError:
-#     print("Brak konfiguracji bazy danych w pliku local_settings.py!")
-#     print("Uzupełnij dane i spróbuj ponownie!")
-#     exit(0)
