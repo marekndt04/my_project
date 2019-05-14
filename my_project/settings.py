@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'my_flat',
     'users',
     'crispy_forms',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
