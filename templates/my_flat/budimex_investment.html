@@ -3,7 +3,7 @@
 {% block content %}
 
     {% for url, image_source, title  in ctx %}
-        <div>
+        <div class="div_img_review">
             <a href="{{ url }}" target="_blank"><img class="img_review"
                                                      src="https://www.budimex-nieruchomosci.pl{{ image_source }}">
             <br>{{ title }}</a>
