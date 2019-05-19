@@ -35,7 +35,6 @@ def store_dom_development_info():
     for url, img_src, title in dd_info:
         try:
             test_obj = DomDevelopmentInfo.objects.get(invest_name=title)
-            print(title)
 
         except DomDevelopmentInfo.DoesNotExist:
             new_investment = DomDevelopmentInfo()
@@ -52,7 +51,6 @@ def store_victoria_info():
     for url, img_src, title in victoria_info:
         try:
             test_obj = VictoriaInfo.objects.get(invest_name=title)
-            print(title)
 
         except VictoriaInfo.DoesNotExist:
             new_investment = VictoriaInfo()
