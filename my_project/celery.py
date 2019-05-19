@@ -21,7 +21,8 @@ app.autodiscover_tasks()
 @app.on_after_configure.connect
 def setup_schedule_task(sender, **kwargs):
     # sender.add_periodic_task(5.0, simple_function(2, 66), name="test")
-    sender.add_periodic_task(crontab(), store_budmiex_info.s(), name='test')
+    sender.add_periodic_task(crontab(minute=0, hour='*/3'), store_budmiex_info.s(), name='test')
+    # sender.add_periodic_task(crontab(minute=0, hour='*/3'), store_budmiex_info.s(), name='test')
 
 
 @app.task(bind=True)

@@ -5,7 +5,6 @@ from celery import shared_task
 
 import scraper_bs4.scrape_functions as scraper
 
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
 import django
 
@@ -20,9 +19,10 @@ def store_budmiex_info():
 
     for url, img_src, title in budimex_info:
         try:
-            BudimexInfo.objects.filter(invest_name=title)
+            test_obj = BudimexInfo.objects.get(invest_name=title)
+            print(title)
 
-        except(BudimexInfo.DoesNotExist):
+        except BudimexInfo.DoesNotExist:
             new_investment = BudimexInfo()
             new_investment.invest_name = title
             new_investment.invest_img_src = img_src
