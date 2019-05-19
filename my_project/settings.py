@@ -24,7 +24,8 @@ SECRET_KEY = '^br0q)mt4=6@%%*wa(2dj%&46iejni!-t0o%u*v=6ke&c@*s7m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['marek.localhost.run', 'https://marek.localhost.run', '127.0.0.1']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['marek.localhost.run', 'https://marek.localhost.run', '127.0.0.1']
 
 # Application definition
 
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'my_flat',
     'users',
     'crispy_forms',
+    'scraper_bs4',
+    'django_celery_beat',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [

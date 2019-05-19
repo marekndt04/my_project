@@ -17,6 +17,7 @@ class MainPage(View):
 class DevInvestmentBud(View):
     def get(self, request):
         scrape_budim()
+        print(scrape_budim())
         ctx = {
             "ctx": scrape_budim()
         }
