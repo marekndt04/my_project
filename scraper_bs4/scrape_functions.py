@@ -25,8 +25,6 @@ def scrape_budim():
         i_img = element.find("img")["src"]
         image_srcs.append(i_img)
 
-    # print(urls, image_srcs, titles)
-
     return zip(urls, image_srcs, titles)
 
 
@@ -50,8 +48,6 @@ def scrape_dd():
         urls.append(i_url)
         i_img = element.find("img")["data-src"]
         image_srcs.append(i_img)
-
-
 
     return zip(urls, image_srcs, titles)
 

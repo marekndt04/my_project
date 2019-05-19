@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class BudmiexInfo(models.Model):
+class BudimexInfo(models.Model):
     invest_name = models.CharField(max_length=128)
     invest_url = models.TextField()
     invest_img_src = models.TextField()

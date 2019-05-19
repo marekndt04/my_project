@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from scraper_bs4.scrape_functions import scrape_budim, scrape_dd, scrape_victoria
 
 from my_flat.models import Post, Topics
+from scraper_bs4.models import BudimexInfo
 
 
 class MainPage(View):
@@ -16,10 +17,9 @@ class MainPage(View):
 # Think about how to link this three functions into one.
 class DevInvestmentBud(View):
     def get(self, request):
-        scrape_budim()
-        print(scrape_budim())
+        all_investments = BudimexInfo.objects.all()
         ctx = {
-            "ctx": scrape_budim()
+            "all_investments": all_investments
         }
         return render(request, 'my_flat/budimex_investment.html', ctx)
 
