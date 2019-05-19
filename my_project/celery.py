@@ -5,7 +5,7 @@ from celery import Celery
 
 from celery.schedules import crontab
 
-from scraper_bs4.tasks import *
+import scraper_bs4.tasks as scraper_task
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'my_project.settings')
@@ -20,9 +20,10 @@ app.autodiscover_tasks()
 
 @app.on_after_configure.connect
 def setup_schedule_task(sender, **kwargs):
-    # sender.add_periodic_task(5.0, simple_function(2, 66), name="test")
-    sender.add_periodic_task(crontab(minute=0, hour='*/3'), store_budmiex_info.s(), name='test')
-    # sender.add_periodic_task(crontab(minute=0, hour='*/3'), store_budmiex_info.s(), name='test')
+    sender.add_periodic_task(crontab(minute=0, hour='*/3'), scraper_task.store_budimex_info.s(), name='test')
+    sender.add_periodic_task(crontab(minute=0, hour='*/3'), scraper_task.store_dom_development_info.s(),
+                             name='test')
+    sender.add_periodic_task(crontab(minute=0, hour='*/3'), scraper_task.store_victoria_info.s(), name='test')
 
 
 @app.task(bind=True)
