@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 
 from my_flat.views import MainPage, DevInvestmentBud, DevInvestmentDD, DevInvestmentVictoria, ForumView, PostsListView, \
     CreatePostView, UpdatePostView, DeletePostView, CreateNewTopic, DeleteTopicView
+from renovation_costs.views import RenovationCostView
 from users import views as user_views
 
 urlpatterns = [
