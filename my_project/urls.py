@@ -38,6 +38,7 @@ urlpatterns = [
     path('forum/update/<int:pk>', UpdatePostView.as_view(), name='update-post'),
     path('forum/delete/<int:pk>', DeletePostView.as_view(), name='delete-post'),
     path('forum/delete_topic/<int:pk>', DeleteTopicView.as_view(), name='delete-topic'),
+    path('renovation_cost', RenovationCostView.as_view(), name= 'renovation-cost')
 
 
 ]

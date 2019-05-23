@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'scraper_bs4',
     'django_celery_beat',
     'django_celery_results'
+    'renovation_costs',
+    
 ]
 
 MIDDLEWARE = [
