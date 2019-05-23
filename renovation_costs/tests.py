@@ -11,3 +11,6 @@ class RenovationCostSiteTest(TestCase):
         response = self.client.get('/renovation_cost')
         self.assertEqual(response.status_code, 200)
 
+    # def test_template_rendered(self):
+
+

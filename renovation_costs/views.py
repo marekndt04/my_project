@@ -3,5 +3,6 @@ from django.views import View
 
 
 class RenovationCostView(View):
-    pass
+    def get(self, request):
+        return render(request, 'renovation_costs/renovation_cost_main.html')
 
