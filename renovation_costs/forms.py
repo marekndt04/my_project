@@ -1,10 +1,13 @@
 from django import forms
+import renovation_costs.choicefields as choices
 
 
 class PaintingCostForm(forms.Form):
     running_metre = forms.DecimalField(label='Metry bieżące malowania', min_value=0.01)
     flat_height = forms.DecimalField(label='Wysokość mieszkania', min_value=2.5)
     slot_area = forms.DecimalField(label='Powierzchnia otworów', min_value=0.1, initial=0)
+    paints = forms.ChoiceField(label='Farba', choices=choices.paints)
+    bases = forms.ChoiceField(label='Grunt', choices=choices.bases)
 
 
 class DoorWindowSizeCalc(forms.Form):

@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="content-section div_form float-none">
+    <div class="content-section div_form float">
         <h1 class="rounded p-3 mb-2 bg-warning text-dark text-center" >Malowanie</h1>
         <form method="post">
             {% csrf_token %}
@@ -12,7 +12,7 @@
             <input type="submit" value="Policz">
         </form>
     </div>
-    <div class="float-right" style="width: 25%">
+    <div class="float-right calc_position" style="width: 25%">
     <h2>Skorzystaj z kalkulatora powierzchni</h2>
             {{ form_door_window_calc|crispy }}
             <button type="button" id="count">Dolicz otwór</button><br>
