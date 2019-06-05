@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from renovation_costs.forms import PaintingCostForm, DoorWindowSizeCalc
+from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm
 from renovation_costs.models import Paint, Base
 
 
@@ -13,7 +13,7 @@ class RenovationCategoriesView(View):
 class PaintingCostView(View):
     def get(self, request):
         form = PaintingCostForm()
-        form_calc = DoorWindowSizeCalc()
+        form_calc = SlotSizeCalc()
         ctx = {
             'form': form,
             'form_door_window_calc': form_calc
@@ -46,3 +46,14 @@ class PaintingCostView(View):
                 'chosen_base': chosen_base,
             }
             return render(request, 'renovation_costs/painting_cost_view_done.html', ctx)
+
+
+class WallpaperCostView(View):
+    def get(self, request):
+        form = WallpaperCostForm()
+        form_calc = SlotSizeCalc()
+        ctx = {
+            'form': form,
+            'form_slot_calc': form_calc
+        }
+        return render(request, 'renovation_costs/wallpaper_cost_view.html', ctx)

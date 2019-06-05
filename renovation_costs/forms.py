@@ -11,6 +11,14 @@ class PaintingCostForm(forms.Form):
     bases = forms.ChoiceField(label='Grunt', choices=choices.bases)
 
 
-class DoorWindowSizeCalc(forms.Form):
+class WallpaperCostForm(forms.Form):
+    running_metre = forms.DecimalField(label='Metry bieżące tapetowania [m]', min_value=0.01)
+    flat_height = forms.DecimalField(label='Wysokość mieszkania [m]', min_value=2.5)
+    slot_area = forms.DecimalField(label='Powierzchnia otworów', min_value=0.1, initial=0)
+    wallppaper = forms.ChoiceField(label='Tapeta', choices=choices.wallpaper)
+    glue = forms.ChoiceField(label='Klej do tapet', choices=choices.wallpaper_glue)
+
+
+class SlotSizeCalc(forms.Form):
     window_height = forms.DecimalField(label='Wysokość [m]', min_value=0.1, required=False)
     window_weight = forms.DecimalField(label='Szerokość [m]', min_value=0.1, required=False)
