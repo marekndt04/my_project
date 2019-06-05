@@ -10,7 +10,7 @@ class Paint(models.Model):
     capacity = models.DecimalField(max_digits=5, decimal_places=2)
 
 
-class Bases(models.Model):
+class Base(models.Model):
     name = models.CharField(max_length=128)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     production_per_litr = models.DecimalField(max_digits=5, decimal_places=2)
