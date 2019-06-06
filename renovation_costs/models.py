@@ -2,29 +2,13 @@ from django.db import models
 
 
 # Create your models here.
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=128)
 
-class Paint(models.Model):
+
+class Product(models.Model):
     name = models.CharField(max_length=128)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    production_per_litr = models.DecimalField(max_digits=5, decimal_places=2)
+    usage_per_unit = models.DecimalField(max_digits=5, decimal_places=2)
     capacity = models.DecimalField(max_digits=5, decimal_places=2)
-
-
-class Base(models.Model):
-    name = models.CharField(max_length=128)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    production_per_litr = models.DecimalField(max_digits=5, decimal_places=2)
-    capacity = models.DecimalField(max_digits=5, decimal_places=2)
-
-
-class Wallpaper(models.Model):
-    name = models.CharField(max_length=128)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    capacity = models.DecimalField(max_digits=5, decimal_places=2)
-
-
-class WallpaperGlue(models.Model):
-    name = models.CharField(max_length=128)
-    usage = models.DecimalField(max_digits=5, decimal_places=2)
-    capacity = models.DecimalField(max_digits=5, decimal_places=2)
-    price = models.DecimalField(max_digits=5, decimal_places=2, default=None, null=True)
+    product_category = models.ForeignKey(ProductCategory, null=True, on_delete=models.SET_NULL)

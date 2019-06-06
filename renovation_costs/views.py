@@ -1,8 +1,11 @@
+import math
+
 from django.shortcuts import render
 from django.views import View
 
 from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm
-from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
+# from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
+from renovation_costs.models import Product
 
 
 class RenovationCategoriesView(View):
@@ -16,10 +19,11 @@ class PaintingCostView(View):
         form_calc = SlotSizeCalc()
         ctx = {
             'form': form,
-            'form_door_window_calc': form_calc
+            'form_slot_size': form_calc
         }
         return render(request, 'renovation_costs/painting_cost_view.html', ctx)
 
+    #
     def post(self, request):
         form = PaintingCostForm(request.POST)
         if form.is_valid():
@@ -31,12 +35,12 @@ class PaintingCostView(View):
             base = form.cleaned_data['bases']
 
             paint_area = running_metre * flat_height + ceiling_area - slot_area
-            chosen_paint = Paint.objects.get(pk=paint)
-            chosen_base = Base.objects.get(pk=base)
+            chosen_paint = Product.objects.get(pk=paint)
+            chosen_base = Product.objects.get(pk=base)
 
-            result_of_paint = round(paint_area / chosen_paint.production_per_litr / chosen_paint.capacity, 0) \
+            result_of_paint = math.ceil(paint_area / chosen_paint.usage_per_unit) \
                               * chosen_paint.price
-            result_of_base = round(paint_area / chosen_base.production_per_litr / chosen_base.capacity, 0) \
+            result_of_base = math.ceil(paint_area / chosen_base.usage_per_unit) \
                              * chosen_base.price
 
             ctx = {
@@ -68,11 +72,11 @@ class WallpaperCostView(View):
             glue = form.cleaned_data['glue']
 
             wallpaper_area = running_metre * flat_height - slot_area
-            chosen_wallpaper = Wallpaper.objects.get(pk=wallpaper)
-            chosen_glue = WallpaperGlue.objects.get(pk=glue)
+            chosen_wallpaper = Product.objects.get(pk=wallpaper)
+            chosen_glue = Product.objects.get(pk=glue)
 
-            result_of_wallpaper = round(wallpaper_area / chosen_wallpaper.capacity, 0) * chosen_wallpaper.price
-            result_of_glue = round(wallpaper_area/chosen_glue.usage, 0) * chosen_glue.price
+            result_of_wallpaper = math.ceil(wallpaper_area / chosen_wallpaper.usage_per_unit) * chosen_wallpaper.price
+            result_of_glue = math.ceil(wallpaper_area/chosen_glue.usage_per_unit) * chosen_glue.price
 
             ctx = {
                 'costs_of_wallpaper': round(result_of_wallpaper, 2),
@@ -81,4 +85,9 @@ class WallpaperCostView(View):
                 'chosen_glue': chosen_glue,
             }
             return render(request, 'renovation_costs/wallpaper_cost_view_done.html', ctx)
-
+#
+#
+# class CeramicGlazeCostView(View):
+#     def get(self, request):
+#
+#         pass
