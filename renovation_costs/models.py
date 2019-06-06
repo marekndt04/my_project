@@ -27,3 +27,4 @@ class WallpaperGlue(models.Model):
     name = models.CharField(max_length=128)
     usage = models.DecimalField(max_digits=5, decimal_places=2)
     capacity = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=5, decimal_places=2, default=None, null=True)

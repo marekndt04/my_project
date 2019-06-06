@@ -5,10 +5,10 @@
 
 {% block content %}
     <div class="content-section div_form float">
-        <h2>Farba - {{ chosen_paint.name }} :</h2>
-            <p>{{ costs_of_paint }} zł</p>
-        <h2>Grunt - {{ chosen_base.name }} :</h2>
-            <p>{{ costs_of_base }} zł</p>
+        <h2>Tapeta - {{ chosen_wallpaper.name }} :</h2>
+            <p>{{ costs_of_wallpaper }} zł</p>
+        <h2>Klej do tapet - {{ chosen_glue.name }} :</h2>
+            <p>{{ costs_of_glue }} zł</p>
     <a href="{% url 'renovation-cost' %}" class="btn btn-outline-success my-2 my-sm-0">Wróc do kategorii</a>
     </div>
 

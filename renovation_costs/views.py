@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm
-from renovation_costs.models import Paint, Base
+from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
 
 
 class RenovationCategoriesView(View):
@@ -57,3 +57,28 @@ class WallpaperCostView(View):
             'form_slot_calc': form_calc
         }
         return render(request, 'renovation_costs/wallpaper_cost_view.html', ctx)
+
+    def post(self, request):
+        form = WallpaperCostForm(request.POST)
+        if form.is_valid():
+            running_metre = form.cleaned_data['running_metre']
+            flat_height = form.cleaned_data['flat_height']
+            slot_area = form.cleaned_data['slot_area']
+            wallpaper = form.cleaned_data['wallpaper']
+            glue = form.cleaned_data['glue']
+
+            wallpaper_area = running_metre * flat_height - slot_area
+            chosen_wallpaper = Wallpaper.objects.get(pk=wallpaper)
+            chosen_glue = WallpaperGlue.objects.get(pk=glue)
+
+            result_of_wallpaper = round(wallpaper_area / chosen_wallpaper.capacity, 0) * chosen_wallpaper.price
+            result_of_glue = round(wallpaper_area/chosen_glue.usage, 0) * chosen_glue.price
+
+            ctx = {
+                'costs_of_wallpaper': round(result_of_wallpaper, 2),
+                'costs_of_glue': round(result_of_glue, 2),
+                'chosen_wallpaper': chosen_wallpaper,
+                'chosen_glue': chosen_glue,
+            }
+            return render(request, 'renovation_costs/wallpaper_cost_view_done.html', ctx)
+
