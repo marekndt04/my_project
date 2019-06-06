@@ -22,3 +22,19 @@ class WallpaperCostForm(forms.Form):
 class SlotSizeCalc(forms.Form):
     window_height = forms.DecimalField(label='Wysokość [m]', min_value=0.1, required=False)
     window_weight = forms.DecimalField(label='Szerokość [m]', min_value=0.1, required=False)
+
+
+class AreaSizeCalc(forms.Form):
+    lenght = forms.DecimalField(label='Długość [m]', min_value=0.1, required=False)
+    weight = forms.DecimalField(label='Szerokość [m]', min_value=0.1, required=False)
+
+
+class CeramicGlazeCostForm(forms.Form):
+    wall_running_metre = forms.DecimalField(label='Metry bieżące śćian [m]', decimal_places=2)
+    wall_height = forms.DecimalField(label='Wysokość powierzchni pod glazurę [m]', decimal_places=2)
+    floor_area = forms.DecimalField(label='Powierzchnia podłogi [m2]', decimal_places=2, initial=0)
+    slot_area = forms.DecimalField(label='Powierzchnia otworów [m2]', decimal_places=2, initial=0)
+    wall_tiles = forms.ChoiceField(label='Płytki ścienne', choices=choices.wall_tiles)
+    floor_tiles = forms.ChoiceField(label='Płytki podłogowe', choices=choices.floor_tiles)
+    fugue = forms.ChoiceField(label='Fuga', choices=choices.fugue)
+    silicone = forms.ChoiceField(label='Silikon', choices=choices.silicone)

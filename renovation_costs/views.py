@@ -3,7 +3,7 @@ import math
 from django.shortcuts import render
 from django.views import View
 
-from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm
+from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm, CeramicGlazeCostForm, AreaSizeCalc
 # from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
 from renovation_costs.models import Product
 
@@ -85,9 +85,30 @@ class WallpaperCostView(View):
                 'chosen_glue': chosen_glue,
             }
             return render(request, 'renovation_costs/wallpaper_cost_view_done.html', ctx)
-#
-#
-# class CeramicGlazeCostView(View):
-#     def get(self, request):
-#
-#         pass
+
+
+class CeramicGlazeCostView(View):
+    def get(self, request):
+        form = CeramicGlazeCostForm()
+        form_calc_1= SlotSizeCalc()
+        form_calc_2= AreaSizeCalc()
+
+        ctx = {
+            'form': form,
+            'form_slot_calc': form_calc_1,
+            'form_floor_tiles_area': form_calc_2
+        }
+
+        return render(request, 'renovation_costs/ceramic_glaze_cost_view.html', ctx)
+
+    def post(self, request):
+        form = CeramicGlazeCostForm(request.POST)
+        if form.is_valid():
+            wall_running_metre = form.cleaned_data['wall_running_metre']
+            wall_height = form.cleaned_data['wall_height']
+            floor_area = form.cleaned_data['floor_area']
+            slot_area = form.cleaned_data['slot_area']
+            wall_tiles = form.cleaned_data['wall_tiles']
+            floor_tiles = form.cleaned_data['floor_tiles']
+            fugue = form.cleaned_data['fugue']
+            silicone = form.cleaned_data['silicone']
