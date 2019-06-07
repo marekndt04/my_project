@@ -52,3 +52,12 @@ class PlasterCostForm(forms.Form):
     layers_of_plaster = forms.ChoiceField(label='Krotność szpachlowania', choices=choices.layers_of_plaster)
     plaster = forms.ChoiceField(label='Gładź szpachlowa', choices=choices.plaster)
     base = forms.ChoiceField(label='Grunt budowlany', choices=choices.plaster_base)
+
+
+class FloorPanelCostForm(forms.Form):
+    floor_area = forms.DecimalField(label='Powierzchnia podłogi [m2]', min_value=0.1)
+    room_circuit = forms.DecimalField(label='Obwód pomieszczenia [m]', min_value=0.1)
+    board = forms.ChoiceField(label='Listwa przypodłogowa', choices=choices.board)
+    floor_panel = forms.ChoiceField(label='Panel podłogowy', choices=choices.floor_panels)
+    floor_panel_bed = forms.ChoiceField(label='Podkład pod panele', choices=choices.floor_panel_bed)
+    foil = forms.ChoiceField(choices=choices.foil, widget=forms.HiddenInput())

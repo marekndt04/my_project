@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 
 from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm, CeramicGlazeCostForm, \
-    AreaSizeCalc, PlasterCostForm
+    AreaSizeCalc, PlasterCostForm, FloorPanelCostForm
 # from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
 from renovation_costs.models import Product
 
@@ -195,3 +195,40 @@ class PlasterCostView(View):
                 'chosen_base': chosen_base,
             }
             return render(request, 'renovation_costs/plaster_cost_view_done.html', ctx)
+
+
+class FloorPanelCostView(View):
+    def get(self, request):
+        form = FloorPanelCostForm()
+
+        return render(request, 'renovation_costs/floor_panel_cost_view.html', {'form': form})
+
+    def post(self, request):
+        form = FloorPanelCostForm(request.POST)
+        if form.is_valid():
+            floor_area = form.cleaned_data['floor_area']
+            room_circuit = form.cleaned_data['room_circuit']
+            board = form.cleaned_data['board']
+            floor_panel = form.cleaned_data['floor_panel']
+            floor_panel_bed = form.cleaned_data['floor_panel_bed']
+            foil = form.cleaned_data['foil']
+
+            chosen_floor_panel = Product.objects.get(pk=floor_panel)
+            chosen_floor_panel_bed = Product.objects.get(pk=floor_panel_bed)
+            chosen_foil = Product.objects.get(pk=foil)
+            chosen_board = Product.objects.get(pk=board)
+            floor_panel_result = floor_area * (
+                    chosen_floor_panel.price + chosen_floor_panel_bed.price + chosen_foil.price
+                    )
+            board_result = math.ceil(room_circuit / chosen_board.usage_per_unit) * chosen_board.price
+
+            ctx = {
+                'costs_of_floor_panel': round(floor_panel_result, 2),
+                'costs_of_board': round(board_result, 2),
+                'chosen_floor_panel': chosen_floor_panel,
+                'chosen_floor_panel_bed': chosen_floor_panel_bed,
+                'chosen_foil': chosen_foil,
+                'chosen_board': chosen_board,
+            }
+
+            return render(request, 'renovation_costs/floor_panel_cost_view_done.html', ctx)
