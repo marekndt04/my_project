@@ -42,3 +42,12 @@ class CeramicGlazeCostForm(forms.Form):
                                                           'takie jak narożniki pomieszczeń, łaczenie płytek podłogowych'
                                                           ' i ściennych ')
     silicone = forms.ChoiceField(label='Silikon', choices=choices.silicone)
+
+
+class PlasterCostForm(forms.Form):
+    running_metre = forms.DecimalField(label='Metry bieżące szpachlowania [m]', min_value=0.01)
+    flat_height = forms.DecimalField(label='Wysokość mieszkania [m]', min_value=2.5)
+    ceiling_area = forms.DecimalField(label='Powierzchnia sufitów [m2]', min_value=0.1)
+    slot_area = forms.DecimalField(label='Powierzchnia otworów [m2]', min_value=0.1, initial=0)
+    plaster = forms.ChoiceField(label='Gładź szpachlowa', choices=choices.plaster)
+    bases = forms.ChoiceField(label='Grunt budowlany', choices=choices.plaster_base)

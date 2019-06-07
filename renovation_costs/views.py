@@ -3,7 +3,8 @@ import math
 from django.shortcuts import render
 from django.views import View
 
-from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm, CeramicGlazeCostForm, AreaSizeCalc
+from renovation_costs.forms import PaintingCostForm, SlotSizeCalc, WallpaperCostForm, CeramicGlazeCostForm, \
+    AreaSizeCalc, PlasterCostForm
 # from renovation_costs.models import Paint, Base, Wallpaper, WallpaperGlue
 from renovation_costs.models import Product
 
@@ -148,3 +149,17 @@ class CeramicGlazeCostView(View):
             }
 
             return render(request, 'renovation_costs/ceramic_glaze_cost_view_done.html', ctx)
+
+
+class PlasterCostView(View):
+    def get(self, request):
+        form = PlasterCostForm()
+        form_calc_1 = SlotSizeCalc()
+
+
+        ctx = {
+            'form': form,
+            'form_slot_calc': form_calc_1,
+        }
+
+        return render(request, 'renovation_costs/plaster_cost_view.html', ctx)
