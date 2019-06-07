@@ -76,7 +76,7 @@ class WallpaperCostView(View):
             chosen_glue = Product.objects.get(pk=glue)
 
             result_of_wallpaper = math.ceil(wallpaper_area / chosen_wallpaper.usage_per_unit) * chosen_wallpaper.price
-            result_of_glue = math.ceil(wallpaper_area/chosen_glue.usage_per_unit) * chosen_glue.price
+            result_of_glue = math.ceil(wallpaper_area / chosen_glue.usage_per_unit) * chosen_glue.price
 
             ctx = {
                 'costs_of_wallpaper': round(result_of_wallpaper, 2),
@@ -90,8 +90,8 @@ class WallpaperCostView(View):
 class CeramicGlazeCostView(View):
     def get(self, request):
         form = CeramicGlazeCostForm()
-        form_calc_1= SlotSizeCalc()
-        form_calc_2= AreaSizeCalc()
+        form_calc_1 = SlotSizeCalc()
+        form_calc_2 = AreaSizeCalc()
 
         ctx = {
             'form': form,
@@ -111,4 +111,40 @@ class CeramicGlazeCostView(View):
             wall_tiles = form.cleaned_data['wall_tiles']
             floor_tiles = form.cleaned_data['floor_tiles']
             fugue = form.cleaned_data['fugue']
+            silicone_running_metre = form.cleaned_data['silicone_running_metre']
             silicone = form.cleaned_data['silicone']
+
+            ceramic_glaze_area_walls = wall_running_metre * wall_height - slot_area
+            ceramic_glaze_area_floor = floor_area
+            chosen_wall_tiles = Product.objects.get(pk=wall_tiles)
+            chosen_floor_tiles = Product.objects.get(pk=floor_tiles)
+            chosen_fugue = Product.objects.get(pk=fugue)
+            chosen_silicone = Product.objects.get(pk=silicone)
+
+            wall_tiles_result = math.ceil(
+                ceramic_glaze_area_walls / chosen_wall_tiles.usage_per_unit
+                ) * chosen_wall_tiles.price
+            floor_tiles_result = math.ceil(
+                ceramic_glaze_area_floor / chosen_floor_tiles.usage_per_unit
+                ) * chosen_floor_tiles.price
+            fugue_result = math.ceil(
+                (ceramic_glaze_area_floor + ceramic_glaze_area_walls) / chosen_fugue.usage_per_unit
+                ) * chosen_fugue.price
+            silicone_result = math.ceil(
+                silicone_running_metre / chosen_silicone.usage_per_unit
+                ) * chosen_silicone.price
+
+            ctx = {
+                'wall_tiles_result': round(wall_tiles_result,2),
+                'floor_tiles_result': round(floor_tiles_result,2),
+                'fugue_result': round(fugue_result,2),
+                'silicone_result': round(silicone_result,2),
+                'products': {
+                    'floor_tiles': chosen_floor_tiles,
+                    'wall_tiles': chosen_wall_tiles,
+                    'fugue': chosen_fugue,
+                    'silicone': chosen_silicone,
+                }
+            }
+
+            return render(request, 'renovation_costs/ceramic_glaze_cost_view_done.html', ctx)

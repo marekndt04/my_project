@@ -37,4 +37,8 @@ class CeramicGlazeCostForm(forms.Form):
     wall_tiles = forms.ChoiceField(label='Płytki ścienne', choices=choices.wall_tiles)
     floor_tiles = forms.ChoiceField(label='Płytki podłogowe', choices=choices.floor_tiles)
     fugue = forms.ChoiceField(label='Fuga', choices=choices.fugue)
+    silicone_running_metre = forms.DecimalField(label='Metry bieżące silikonowania [m]', decimal_places=2,
+                                                help_text='Wlicz tutaj wszystkie łączenia powierzchni płytek '
+                                                          'takie jak narożniki pomieszczeń, łaczenie płytek podłogowych'
+                                                          ' i ściennych ')
     silicone = forms.ChoiceField(label='Silikon', choices=choices.silicone)
