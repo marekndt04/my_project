@@ -10,5 +10,9 @@ fugue = Product.objects.filter(product_category__name='fuga').values_list('id', 
 silicone = Product.objects.filter(product_category__name='silikon').values_list('id', 'name')
 plaster = Product.objects.filter(product_category__name='gładź szpachlowa').values_list('id', 'name')
 plaster_base = Product.objects.filter(product_category__name='grunt do gładzi').values_list('id', 'name')
-
+layers_of_plaster = (
+    (1, 'Jednokrotne szpachlowanie'),
+    (2, 'Dwukrotne szpachlowanie'),
+    (3, 'Trzykrotne szpachlowanie'),
+)
 

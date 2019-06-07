@@ -33,7 +33,7 @@ class PaintingCostView(View):
             slot_area = form.cleaned_data['slot_area']
             ceiling_area = form.cleaned_data['ceiling_area']
             paint = form.cleaned_data['paints']
-            base = form.cleaned_data['bases']
+            base = form.cleaned_data['base']
 
             paint_area = running_metre * flat_height + ceiling_area - slot_area
             chosen_paint = Product.objects.get(pk=paint)
@@ -163,3 +163,35 @@ class PlasterCostView(View):
         }
 
         return render(request, 'renovation_costs/plaster_cost_view.html', ctx)
+
+    def post(self, request):
+        form = PlasterCostForm(request.POST)
+        if form.is_valid():
+            running_metre = form.cleaned_data['running_metre']
+            flat_height = form.cleaned_data['flat_height']
+            slot_area = form.cleaned_data['slot_area']
+            ceiling_area = form.cleaned_data['ceiling_area']
+            layers_of_plaster = int(form.cleaned_data['layers_of_plaster'])
+            print(type(layers_of_plaster))
+            plaster = form.cleaned_data['plaster']
+            base = form.cleaned_data['base']
+
+            plaster_area = running_metre * flat_height + ceiling_area - slot_area
+            print(type(plaster_area))
+            chosen_plaster = Product.objects.get(pk=plaster)
+            chosen_base = Product.objects.get(pk=base)
+
+            result_of_plaster = math.ceil(
+                plaster_area * layers_of_plaster / chosen_plaster.usage_per_unit
+                ) * chosen_plaster.price
+            result_of_base = math.ceil(
+                plaster_area / chosen_base.usage_per_unit
+                ) * chosen_base.price
+
+            ctx = {
+                'costs_of_plaster': round(result_of_plaster, 2),
+                'costs_of_base': round(result_of_base, 2),
+                'chosen_plaster': chosen_plaster,
+                'chosen_base': chosen_base,
+            }
+            return render(request, 'renovation_costs/plaster_cost_view_done.html', ctx)

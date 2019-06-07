@@ -8,7 +8,7 @@ class PaintingCostForm(forms.Form):
     ceiling_area = forms.DecimalField(label='Powierzchnia sufitów [m2]', min_value=0.1)
     slot_area = forms.DecimalField(label='Powierzchnia otworów [m2]', min_value=0.1, initial=0)
     paints = forms.ChoiceField(label='Farba', choices=choices.paints)
-    bases = forms.ChoiceField(label='Grunt', choices=choices.bases)
+    base = forms.ChoiceField(label='Grunt', choices=choices.bases)
 
 
 class WallpaperCostForm(forms.Form):
@@ -49,5 +49,6 @@ class PlasterCostForm(forms.Form):
     flat_height = forms.DecimalField(label='Wysokość mieszkania [m]', min_value=2.5)
     ceiling_area = forms.DecimalField(label='Powierzchnia sufitów [m2]', min_value=0.1)
     slot_area = forms.DecimalField(label='Powierzchnia otworów [m2]', min_value=0.1, initial=0)
+    layers_of_plaster = forms.ChoiceField(label='Krotność szpachlowania', choices=choices.layers_of_plaster)
     plaster = forms.ChoiceField(label='Gładź szpachlowa', choices=choices.plaster)
-    bases = forms.ChoiceField(label='Grunt budowlany', choices=choices.plaster_base)
+    base = forms.ChoiceField(label='Grunt budowlany', choices=choices.plaster_base)
