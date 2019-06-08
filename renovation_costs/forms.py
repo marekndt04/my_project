@@ -57,7 +57,7 @@ class PlasterCostForm(forms.Form):
     ceiling_area = forms.DecimalField(label='Powierzchnia sufitów [m2]', min_value=0.1)
     slot_area = forms.DecimalField(label='Powierzchnia otworów [m2]', min_value=0.1, initial=0,
                                    help_text='Suma powierzchni okien i drzwi')
-    layers_of_plaster = forms.ChoiceField(label='Krotność szpachlowania', choices=choices.layers_of_plaster)
+    layers_of_plaster = forms.ChoiceField(label='Ile razy chcesz szpachlować ?', choices=choices.layers_of_plaster)
     plaster = forms.ChoiceField(label='Gładź szpachlowa', choices=choices.plaster)
     base = forms.ChoiceField(label='Grunt budowlany', choices=choices.plaster_base)
 
